@@ -1,0 +1,14 @@
+entrypoint = "src/routes/+page.svelte"
+modules = ["svelte-kit-node-20:v1-20230724-46059dd"]
+
+[nix]
+channel = "stable-23_11"
+
+[deployment]
+build = ["npm", "run", "build"]
+deploymentTarget = "static"
+publicDir = "build"
+
+[[ports]]
+localPort = 5173
+externalPort = 80
