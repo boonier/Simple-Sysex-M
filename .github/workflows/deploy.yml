@@ -22,6 +22,7 @@ jobs:
         run: |
           git checkout -b gh-pages
           git rm -rf --cached *
+          git checkout main -- build
           cp -r build/* .
           git add .
           git commit -m "Deploy to GitHub Pages"
