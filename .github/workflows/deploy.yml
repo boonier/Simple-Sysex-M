@@ -12,11 +12,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and deploy
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
         run: |
           git checkout -b gh-pages
           git rm -rf --cached *
-          git checkout main -- build
           cp -r build/* .
           git add .
           git commit -m "Deploy to GitHub Pages"
