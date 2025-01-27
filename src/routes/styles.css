@@ -7,6 +7,12 @@ body {
 	font-family: sans-serif;
 	margin: 0;
 	padding: 0;
+	background: #343232;
+	color:#707070;
+}
+
+h2 {
+	margin: 10px 0;
 }
 
 .io {
@@ -20,11 +26,11 @@ body {
 	flex-direction: row;
 	border: 1px solid #ccc;
 	margin: 10px;
+	padding: 5px;
 }
 
 .controls>* {
 	flex: 1;
-
 }
 
 #control {
