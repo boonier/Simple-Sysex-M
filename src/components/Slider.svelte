@@ -1,17 +1,11 @@
 <script>
   import { getContext } from "svelte";
-  import { PORT_IN } from "../store.js";
 
-  // let selectedPort;
-
-  // PORT_IN.subscribe((value) => {
-  //   selectedPort = value;
-  // });
+  export let title = "A Slider";
+  export let param;
 
   const sendSysexString = getContext("sendSysexStringHandler");
   let sliderValueEl = 64;
-  export let title = "A Slider";
-  export let param;
 </script>
 
 <div class="slider">
