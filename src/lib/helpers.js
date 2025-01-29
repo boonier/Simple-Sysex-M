@@ -32,6 +32,7 @@ function isHexadecimal(str) {
 // console.log(isHexadecimal("G12"));
 
 /**
+ * checksum calculation: https://www.vguitarforums.com/smf/index.php?topic=20544.0
  * Calculates the checksum for a given payload, according to the MIDI standard
  * @param {number[]} payload The array of bytes to calculate the checksum for
  * @returns {number} The calculated checksum
@@ -54,4 +55,36 @@ const calculateChecksum = (payload) => {
   // return checksum;
 };
 
-export { hexToDecimal, decimalToHex, isHexadecimal, calculateChecksum };
+const createSysexString = (param, value) => {
+  //TODO F0 41 10 6A 12   03 00 10 51 06   16 F7
+  // TODO:  this is specific to Roland JV-2080
+  const startOfSysex = [0x10, 0x6a, 0x12];
+  // const addressBytes = [0x03, 0x00, 0x10];
+  const addressBytes = [
+    hexToDecimal(0x03),
+    hexToDecimal(0x00),
+    hexToDecimal(0x12),
+  ];
+
+  const payload = [
+    ...addressBytes, // dec
+    hexToDecimal(param), // dec - parameter
+    parseInt(value), //dec - value
+  ];
+
+  const final = [
+    ...startOfSysex,
+    ...payload,
+    calculateChecksum(payload), // checksum
+  ];
+
+  return final;
+};
+
+export {
+  hexToDecimal,
+  decimalToHex,
+  isHexadecimal,
+  calculateChecksum,
+  createSysexString,
+};
