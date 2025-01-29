@@ -1,21 +1,22 @@
 <script>
-	import Header from "./Header.svelte";
-	import "./styles.css";
+  import Header from "./Header.svelte";
+  import "./styles.css";
 </script>
 
 <div class="app">
-	<Header />
+  <Header />
 
-	<main>
-		<slot />
-	</main>
+  <main>
+    <slot />
+  </main>
 
-	<footer>
-		<p>
-			visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
-		</p>
-	</footer>
+  <footer>
+    <p>stuff here</p>
+  </footer>
 </div>
 
 <style>
+  footer {
+    margin: 10px;
+  }
 </style>

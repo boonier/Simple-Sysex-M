@@ -4,7 +4,6 @@
   export let title = "A Slider";
   let theValue;
   const sendProgramChange = getContext("sendProgramChangeHandler");
-
   $: sendProgramChange(6, theValue);
 </script>
 
