@@ -57,19 +57,6 @@
     <Tone id={3} isActive={selectedTone === 2} />
     <Tone id={4} isActive={selectedTone === 3} />
   </article>
-
-  <aside>
-    <div class="controls controls__patch-performance">
-      <div class="program-change">
-        <ControlGroup title="Program">
-          <ProgramChange title="Patch No." />
-        </ControlGroup>
-      </div>
-    </div>
-    <div class="controls">
-      <Button label="Play note" />
-    </div>
-  </aside>
 </section>
 
 <style>

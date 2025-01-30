@@ -10,6 +10,12 @@
     playTestNote,
   } from "$lib/handlers.js";
 
+  //TODO move to Globals component
+  import ControlGroup from "../components/ControlGroup.svelte";
+  import Button from "../components/Button.svelte";
+  import ProgramChange from "../components/ProgramChange.svelte";
+  //TODO end
+
   let isLoading = true;
   let ioContent = ``;
   let inputDevices = [];
@@ -47,14 +53,29 @@
 
 <MidiSetup on:setup={handleMidiSetup} />
 
-{#if !isLoading}
-  <DeviceSelectors
-    {inputDevices}
-    {outputDevices}
-    bind:offsetInputPort
-    bind:offsetOutputPort
-  />
-{/if}
+<section class="global-controls">
+  {#if !isLoading}
+    <DeviceSelectors
+      {inputDevices}
+      {outputDevices}
+      bind:offsetInputPort
+      bind:offsetOutputPort
+    />
+  {/if}
+
+  <section>
+    <div class="controls controls__patch-performance">
+      <div class="program-change">
+        <ControlGroup title="Program">
+          <ProgramChange title="Patch No." />
+        </ControlGroup>
+      </div>
+    </div>
+    <div class="controls">
+      <Button label="Play note" />
+    </div>
+  </section>
+</section>
 
 {#if showDebug}
   <pre>effectiveInputPort: {effectiveInputPort}</pre>
@@ -76,16 +97,13 @@
 {/if}
 
 <style>
-  section {
-    margin: 10px;
-  }
-
   /* .tones-container {
     border: 1px solid #535353;
   } */
 
-  section {
+  .global-controls {
     display: flex;
+    margin: 10px;
   }
   article {
     flex: 2;
