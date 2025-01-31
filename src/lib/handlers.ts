@@ -16,7 +16,7 @@ import { outputPort } from "../store";
 //       hexToDecimal(0x12),
 //     ];
 
-//     const payload = [
+//     const payload = [s
 //       ...addressBytes, // dec
 //       hexToDecimal(param), // dec - parameter
 //       parseInt(value), //dec - value
@@ -32,7 +32,12 @@ import { outputPort } from "../store";
 //   }
 // };
 
-export const sendSysexString = (param, val) => {
+/**
+ * Send a sysex string to the currently selected output port.
+ * @param {number} param Parameter to set (e.g. 0x51 for TVF cutoff)
+ * @param {number} val Value to set the parameter to
+ */
+export const sendSysexString = (param: number, val: number) => {
   if (WebMidi.enabled) {
     const port = get(outputPort);
     const final = createSysexString(param, val);
@@ -40,18 +45,26 @@ export const sendSysexString = (param, val) => {
   }
 };
 
-export const playTestNote = (device) => {
+/**
+ * Play a test note on the currently selected output port.
+ * @param {number} device The device to send the note to (ignored)
+ */
+export const playTestNote = (device: number): void => {
   if (WebMidi.enabled) {
     const port = get(outputPort);
-    console.log(port);
-
+    // console.log(port);
     WebMidi.outputs[port].channels[3].playNote(["C3", "E3", "G3", "B3"], {
       duration: 2000,
     });
   }
 };
 
-export const sendProgramChange = (device, val) => {
+/**
+ * Send a program change message to the specified device.
+ * @param {number} device The device to send the message to
+ * @param {number} val The value to set the program to (1-indexed)
+ */
+export const sendProgramChange = (device: number, val: number): void => {
   if (WebMidi.enabled) {
     WebMidi.outputs[device]?.sendProgramChange(val - 1, 3);
   }

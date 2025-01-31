@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
   import { setContext } from "svelte";
   import MidiSetup from "../components/MidiSetup.svelte";
   import ToneManager from "../components/ToneManager.svelte";
   import DeviceSelectors from "../components/DeviceSelectors.svelte";
   import IoInfo from "../components/IOInfo.svelte";
+
   import {
     sendProgramChange,
     sendSysexString,
@@ -15,6 +16,8 @@
   import Button from "../components/Button.svelte";
   import ProgramChange from "../components/ProgramChange.svelte";
   //TODO end
+
+  import { greeting } from "$lib/test.ts";
 
   let isLoading = true;
   let ioContent = ``;
@@ -52,6 +55,8 @@
 </svelte:head>
 
 <MidiSetup on:setup={handleMidiSetup} />
+
+<h1>{greeting}</h1>
 
 <section class="global-controls">
   {#if !isLoading}
